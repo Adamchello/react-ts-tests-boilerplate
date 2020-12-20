@@ -1,13 +1,44 @@
 import React from 'react';
-import Button from './components/Button/Button';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+} from 'react-router-dom';
 
-const App: React.FC = () => {
-  return (
-    <div className="App">
-      <h1>Content</h1>
-      <Button>Click!</Button>
-    </div>
-  );
-}
+import Home from './pages/Home';
+import About from './pages/About';
+import Users from './pages/Users';
+
+const App = (): JSX.Element => (
+  <Router>
+    <>
+      <nav>
+        <ul>
+          <li>
+            <Link to='/'>Home</Link>
+          </li>
+          <li>
+            <Link to='/about'>About</Link>
+          </li>
+          <li>
+            <Link to='/users'>Users</Link>
+          </li>
+        </ul>
+      </nav>
+      <Switch>
+        <Route path='/' exact>
+          <Home />
+        </Route>
+        <Route path='/about'>
+          <About />
+        </Route>
+        <Route path='/users'>
+          <Users />
+        </Route>
+      </Switch>
+    </>
+  </Router>
+);
 
 export default App;

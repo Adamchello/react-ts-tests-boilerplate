@@ -1,27 +1,11 @@
 import React from 'react';
-import { render, unmountComponentAtNode } from "react-dom";
-import { act } from "react-dom/test-utils";
-import Button from '../components/Button/Button';
+import { render, screen } from '@testing-library/react';
+import { act } from 'react-dom/test-utils';
+import Home from '../pages/Home';
 
-let container = null;
-beforeEach(() => {
-  // setup a DOM element as a render target
-  container = document.createElement("div");
-  document.body.appendChild(container);
-});
-
-afterEach(() => {
-  // cleanup on exiting
-  unmountComponentAtNode(container);
-  container.remove();
-  container = null;
-});
-
-it("renders button with children", () => {
-  const buttonText = "ButtonText"
+it('renders button with children', () => {
   act(() => {
-    render(<Button>{buttonText}</Button>, container);
+    render(<Home />);
   });
-  expect(container.textContent).toBe(buttonText);
-})
-
+  expect(screen.getByTestId('my-test-id').textContent).toBe('Home');
+});
